@@ -5,7 +5,7 @@
 using namespace cv;
 using namespace std;
 
-// Task 3: Camera Calibration Function
+// Task 3: Camera Calibration Function (keep this as you already have it)
 void calibrateCameraFromSavedData(
     const vector<vector<Point2f>>& corner_list,
     const vector<vector<Vec3f>>& point_list,
@@ -16,53 +16,28 @@ void calibrateCameraFromSavedData(
         return;
     }
 
-    cout << "Starting camera calibration using " << corner_list.size() << " images..." << endl;
-
-    // Define output calibration parameters
     Mat camera_matrix = Mat::eye(3, 3, CV_64F);
-    Mat dist_coeffs = Mat::zeros(8, 1, CV_64F);  // Optional: Use 5 coefficients if you want simpler distortion
-
-    // Initial guess for camera matrix
-    camera_matrix.at<double>(0, 0) = 1;                // fx
-    camera_matrix.at<double>(1, 1) = 1;                // fy
-    camera_matrix.at<double>(0, 2) = image_size.width / 2.0;  // cx
-    camera_matrix.at<double>(1, 2) = image_size.height / 2.0; // cy
-
-    cout << "Initial camera matrix (pre-calibration):" << endl << camera_matrix << endl;
-
-    // Calibration flags
-    int flags = CALIB_FIX_ASPECT_RATIO;  // Assume square pixels (fx = fy)
-
-    // Perform calibration
+    Mat dist_coeffs = Mat::zeros(8, 1, CV_64F);
     vector<Mat> rvecs, tvecs;
-    double reprojection_error = calibrateCamera(
-        point_list, corner_list, image_size,
-        camera_matrix, dist_coeffs,
-        rvecs, tvecs,
-        flags
-    );
 
-    cout << "Calibration complete." << endl;
-    cout << "Final camera matrix:" << endl << camera_matrix << endl;
-    cout << "Distortion coefficients:" << endl << dist_coeffs.t() << endl;
-    cout << "Reprojection error: " << reprojection_error << " pixels" << endl;
+    camera_matrix.at<double>(0, 0) = 1;
+    camera_matrix.at<double>(1, 1) = 1;
+    camera_matrix.at<double>(0, 2) = image_size.width / 2.0;
+    camera_matrix.at<double>(1, 2) = image_size.height / 2.0;
 
-    // Save calibration to file
+    double reprojection_error = calibrateCamera(point_list, corner_list, image_size, camera_matrix, dist_coeffs, rvecs, tvecs, CALIB_FIX_ASPECT_RATIO);
+
     FileStorage fs("camera_calibration.yml", FileStorage::WRITE);
     fs << "camera_matrix" << camera_matrix;
     fs << "distortion_coefficients" << dist_coeffs;
     fs.release();
-    cout << "Saved calibration to 'camera_calibration.yml'" << endl;
 
-    // Print rotations and translations for each image (optional for debugging or reporting)
-    for (size_t i = 0; i < rvecs.size(); ++i) {
-        cout << "Image " << i << " rotation vector: " << rvecs[i].t() << endl;
-        cout << "Image " << i << " translation vector: " << tvecs[i].t() << endl;
-    }
+    cout << "Calibration complete and saved." << endl;
 }
 
+// Main
 int main() {
-    const int CHECKERBOARD[2] = {6, 9};  // Checkerboard size (rows, cols)
+    const int CHECKERBOARD[2] = {6, 9};  // 6 rows, 9 columns
 
     VideoCapture cap(0);
     if (!cap.isOpened()) {
@@ -75,6 +50,26 @@ int main() {
     vector<vector<Point2f>> corner_list;
     vector<vector<Vec3f>> point_list;
 
+    // --- Load Calibration for Task 4 ---
+    Mat camera_matrix, dist_coeffs;
+    FileStorage fs("camera_calibration.yml", FileStorage::READ);
+    if (!fs.isOpened()) {
+        cerr << "Error: Could not open camera_calibration.yml. Run calibration first!" << endl;
+        return -1;
+    }
+    fs["camera_matrix"] >> camera_matrix;
+    fs["distortion_coefficients"] >> dist_coeffs;
+    fs.release();
+    cout << "Loaded camera matrix and distortion coefficients." << endl;
+
+    // --- Pre-compute 3D world points (same as in calibration) ---
+    vector<Vec3f> object_points;
+    for (int i = 0; i < CHECKERBOARD[0]; i++) {
+        for (int j = 0; j < CHECKERBOARD[1]; j++) {
+            object_points.push_back(Vec3f(j, -i, 0));
+        }
+    }
+
     while (true) {
         Mat frame, gray;
         cap >> frame;
@@ -84,7 +79,7 @@ int main() {
 
         vector<Point2f> corner_set;
 
-        // Detect corners
+        // Task 1: Detect corners
         bool found = findChessboardCorners(gray, Size(CHECKERBOARD[1], CHECKERBOARD[0]), corner_set,
                                            CALIB_CB_ADAPTIVE_THRESH | CALIB_CB_FAST_CHECK | CALIB_CB_NORMALIZE_IMAGE);
 
@@ -95,36 +90,45 @@ int main() {
             drawChessboardCorners(frame, Size(CHECKERBOARD[1], CHECKERBOARD[0]), corner_set, found);
         }
 
-        imshow("Checkerboard Detection", frame);  // This MUST be inside the loop
+        imshow("Checkerboard Detection", frame);
 
-        char key = waitKey(30);
-        if (key == 27) break;  // 'Esc' to exit
+            // Print number of corners and first corner's coordinates
+            //cout << "Corners detected: " << corner_set.size() << endl;
+            // if (!corner_set.empty()) {
+            //cout << "First corner at: (" << corner_set[0].x << ", " << corner_set[0].y << ")" << endl;
 
-        if (key == 's') {
-            if (found) {
-                corner_list.push_back(corner_set);
+        // Task 2: Save calibration frames
+        if (key == 's' && found) {
+            corner_list.push_back(corner_set);
 
-                vector<Vec3f> point_set;
-                for (int i = 0; i < CHECKERBOARD[0]; i++) {
-                    for (int j = 0; j < CHECKERBOARD[1]; j++) {
-                        point_set.push_back(Vec3f(j, -i, 0));
-                    }
+            vector<Vec3f> point_set;
+            for (int i = 0; i < CHECKERBOARD[0]; i++) {
+                for (int j = 0; j < CHECKERBOARD[1]; j++) {
+                    point_set.push_back(Vec3f(j, -i, 0));
                 }
-                point_list.push_back(point_set);
-
-                drawChessboardCorners(frame, Size(CHECKERBOARD[1], CHECKERBOARD[0]), corner_set, found);
-
-                static int image_count = 0;
-                string filename = "calibration_frame_" + to_string(image_count++) + ".jpg";
-                imwrite(filename, frame);
-                cout << "Saved calibration frame: " << filename << endl;
-            } else {
-                cout << "No checkerboard detected - nothing saved." << endl;
             }
+            point_list.push_back(point_set);
+
+            drawChessboardCorners(frame, Size(CHECKERBOARD[1], CHECKERBOARD[0]), corner_set, found);
+
+            static int image_count = 0;
+            string filename = "calibration_frame_" + to_string(image_count++) + ".jpg";
+            imwrite(filename, frame);
+            cout << "Saved calibration frame: " << filename << endl;
         }
 
         if (key == 'c') {
             calibrateCameraFromSavedData(corner_list, point_list, frame.size());
+        }
+
+        // --- Task 4: Pose Estimation (solvePnP) ---
+        if (found) {
+            Mat rvec, tvec;
+            solvePnP(object_points, corner_set, camera_matrix, dist_coeffs, rvec, tvec);
+
+            cout << "Pose Estimation:" << endl;
+            cout << "Rotation Vector (rvec): " << rvec.t() << endl;
+            cout << "Translation Vector (tvec): " << tvec.t() << endl;
         }
     }
 
