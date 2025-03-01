@@ -1,4 +1,4 @@
-# Install script for directory: /Users/aditshah/Desktop/PRCV/Project4/chessboard
+# Install script for directory: /Users/jheelkamdar/Downloads/CS5330/project4/chessboard
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,13 +34,13 @@ endif()
 
 # Set path to fallback-tool for dependency-resolution.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/Library/Developer/CommandLineTools/usr/bin/objdump")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/aditshah/Desktop/PRCV/Project4/chessboard/build/install_local_manifest.txt"
+  file(WRITE "/Users/jheelkamdar/Downloads/CS5330/project4/chessboard/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -56,6 +56,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/aditshah/Desktop/PRCV/Project4/chessboard/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Users/jheelkamdar/Downloads/CS5330/project4/chessboard/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
