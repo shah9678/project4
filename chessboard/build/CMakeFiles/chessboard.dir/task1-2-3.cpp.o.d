@@ -1,5 +1,5 @@
-CMakeFiles/chessboard.dir/main.cpp.o: \
-  /Users/jheelkamdar/Downloads/CS5330/project4/chessboard/main.cpp \
+CMakeFiles/chessboard.dir/task1-2-3.cpp.o: \
+  /Users/jheelkamdar/Downloads/CS5330/project4/chessboard/task1-2-3.cpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/opencv.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/opencv_modules.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/core.hpp \

@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/chessboard.dir/main.cpp.o"
-  "CMakeFiles/chessboard.dir/main.cpp.o.d"
+  "CMakeFiles/chessboard.dir/task1-2-3.cpp.o"
+  "CMakeFiles/chessboard.dir/task1-2-3.cpp.o.d"
   "chessboard"
   "chessboard.pdb"
 )

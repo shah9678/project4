@@ -57,10 +57,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/aditshah/Desktop/PRCV/Project4/chessboard
+CMAKE_SOURCE_DIR = /Users/jheelkamdar/Downloads/CS5330/project4/chessboard
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/aditshah/Desktop/PRCV/Project4/chessboard/build
+CMAKE_BINARY_DIR = /Users/jheelkamdar/Downloads/CS5330/project4/chessboard/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aditshah/Desktop/PRCV/Project4/chessboard/build/CMakeFiles /Users/aditshah/Desktop/PRCV/Project4/chessboard/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jheelkamdar/Downloads/CS5330/project4/chessboard/build/CMakeFiles /Users/jheelkamdar/Downloads/CS5330/project4/chessboard/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aditshah/Desktop/PRCV/Project4/chessboard/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jheelkamdar/Downloads/CS5330/project4/chessboard/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,29 +129,29 @@ chessboard/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chessboard.dir/build.make CMakeFiles/chessboard.dir/build
 .PHONY : chessboard/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+task1-2-3.o: task1-2-3.cpp.o
+.PHONY : task1-2-3.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chessboard.dir/build.make CMakeFiles/chessboard.dir/main.cpp.o
-.PHONY : main.cpp.o
+task1-2-3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chessboard.dir/build.make CMakeFiles/chessboard.dir/task1-2-3.cpp.o
+.PHONY : task1-2-3.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+task1-2-3.i: task1-2-3.cpp.i
+.PHONY : task1-2-3.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chessboard.dir/build.make CMakeFiles/chessboard.dir/main.cpp.i
-.PHONY : main.cpp.i
+task1-2-3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chessboard.dir/build.make CMakeFiles/chessboard.dir/task1-2-3.cpp.i
+.PHONY : task1-2-3.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+task1-2-3.s: task1-2-3.cpp.s
+.PHONY : task1-2-3.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chessboard.dir/build.make CMakeFiles/chessboard.dir/main.cpp.s
-.PHONY : main.cpp.s
+task1-2-3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chessboard.dir/build.make CMakeFiles/chessboard.dir/task1-2-3.cpp.s
+.PHONY : task1-2-3.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... chessboard"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... task1-2-3.o"
+	@echo "... task1-2-3.i"
+	@echo "... task1-2-3.s"
 .PHONY : help
 
 
