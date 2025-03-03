@@ -50,25 +50,6 @@ int main() {
     vector<vector<Point2f>> corner_list;
     vector<vector<Vec3f>> point_list;
 
-    // --- Load Calibration for Task 4 ---
-    Mat camera_matrix, dist_coeffs;
-    FileStorage fs("camera_calibration.yml", FileStorage::READ);
-    if (!fs.isOpened()) {
-        cerr << "Error: Could not open camera_calibration.yml. Run calibration first!" << endl;
-        return -1;
-    }
-    fs["camera_matrix"] >> camera_matrix;
-    fs["distortion_coefficients"] >> dist_coeffs;
-    fs.release();
-    cout << "Loaded camera matrix and distortion coefficients." << endl;
-
-    // --- Pre-compute 3D world points (same as in calibration) ---
-    vector<Vec3f> object_points;
-    for (int i = 0; i < CHECKERBOARD[0]; i++) {
-        for (int j = 0; j < CHECKERBOARD[1]; j++) {
-            object_points.push_back(Vec3f(j, -i, 0));
-        }
-    }
 
     while (true) {
         Mat frame, gray;
@@ -97,7 +78,9 @@ int main() {
             // if (!corner_set.empty()) {
             //cout << "First corner at: (" << corner_set[0].x << ", " << corner_set[0].y << ")" << endl;
 
+
         // Task 2: Save calibration frames
+        char key = (char)waitKey(30);
         if (key == 's' && found) {
             corner_list.push_back(corner_set);
 
@@ -120,15 +103,8 @@ int main() {
         if (key == 'c') {
             calibrateCameraFromSavedData(corner_list, point_list, frame.size());
         }
-
-        // --- Task 4: Pose Estimation (solvePnP) ---
-        if (found) {
-            Mat rvec, tvec;
-            solvePnP(object_points, corner_set, camera_matrix, dist_coeffs, rvec, tvec);
-
-            cout << "Pose Estimation:" << endl;
-            cout << "Rotation Vector (rvec): " << rvec.t() << endl;
-            cout << "Translation Vector (tvec): " << tvec.t() << endl;
+        if (key == 27) { // ESC key
+            break;
         }
     }
 
