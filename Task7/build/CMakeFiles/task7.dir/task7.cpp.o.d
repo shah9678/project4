@@ -1098,4 +1098,6 @@ CMakeFiles/task7.dir/task7.cpp.o: \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/stitching/detail/blenders.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/video.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/video/tracking.hpp \
-  /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/video/background_segm.hpp
+  /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/video/background_segm.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/xfeatures2d.hpp \
+  /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/xfeatures2d/nonfree.hpp

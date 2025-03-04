@@ -1,8 +1,10 @@
 #include <opencv2/opencv.hpp>
+#include <opencv2/xfeatures2d.hpp>
 #include <iostream>
 #include <vector>
 
 using namespace cv;
+using namespace cv::xfeatures2d;
 using namespace std;
 
 // Task 3: Camera Calibration Function (keep this as you already have it)
@@ -54,6 +56,20 @@ void detectHarrisCorners(Mat& frame) {
     }
 }
 
+// Task 8: Feature Detection using SURF
+void detectSURFFeatures(Mat& frame) {
+    Mat gray;
+    cvtColor(frame, gray, COLOR_BGR2GRAY);
+
+    Ptr<SURF> detector = SURF::create(400); // Hessian threshold
+    vector<KeyPoint> keypoints;
+    Mat descriptors;
+
+    detector->detectAndCompute(gray, noArray(), keypoints, descriptors);
+
+    drawKeypoints(frame, keypoints, frame, Scalar(255, 0, 0), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+}
+
 // Main Function
 int main() {
     VideoCapture cap(0);
@@ -70,6 +86,7 @@ int main() {
         if (frame.empty()) break;
 
         detectHarrisCorners(frame); // Task 7: Apply Harris corner detection
+        detectSURFFeatures(frame);  // Task 8: Apply SURF feature detection
 
         imshow("Feature Detection", frame);
 
