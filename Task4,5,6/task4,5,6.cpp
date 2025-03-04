@@ -35,6 +35,38 @@ void calibrateCameraFromSavedData(
     cout << "Calibration complete and saved." << endl;
 }
 
+// Task 5: Project 3D Axes or Corners
+void project3DPoints(Mat& frame, const Mat& camera_matrix, const Mat& dist_coeffs, const Mat& rvec, const Mat& tvec) {
+    vector<Point3f> axes_points = {
+        {0, 0, 0}, {3, 0, 0}, {0, 3, 0}, {0, 0, -3} // Origin, X, Y, Z axes
+    };
+    vector<Point2f> projected_points;
+    projectPoints(axes_points, rvec, tvec, camera_matrix, dist_coeffs, projected_points);
+
+    line(frame, projected_points[0], projected_points[1], Scalar(0, 0, 255), 3); // X-axis (red)
+    line(frame, projected_points[0], projected_points[2], Scalar(0, 255, 0), 3); // Y-axis (green)
+    line(frame, projected_points[0], projected_points[3], Scalar(255, 0, 0), 3); // Z-axis (blue)
+}
+
+// Task 6: Construct and project a 3D virtual object
+void projectVirtualObject(Mat& frame, const Mat& camera_matrix, const Mat& dist_coeffs, const Mat& rvec, const Mat& tvec) {
+    vector<Point3f> object_points = {
+        {0, 0, 0}, {2, 0, 0}, {1, 2, 0}, {1, 1, 2} // Base triangle and top point of pyramid
+    };
+
+    vector<pair<int, int>> edges = {
+        {0, 1}, {1, 2}, {2, 0}, // Base triangle edges
+        {0, 3}, {1, 3}, {2, 3}  // Sides of the pyramid
+    };
+
+    vector<Point2f> projected_points;
+    projectPoints(object_points, rvec, tvec, camera_matrix, dist_coeffs, projected_points);
+
+    for (const auto& edge : edges) {
+        line(frame, projected_points[edge.first], projected_points[edge.second], Scalar(255, 255, 0), 2); // Yellow lines
+    }
+}
+
 // Main
 int main() {
     const int CHECKERBOARD[2] = {6, 9};  // 6 rows, 9 columns
@@ -92,49 +124,16 @@ int main() {
 
         imshow("Checkerboard Detection", frame);
 
-            // Print number of corners and first corner's coordinates
-            //cout << "Corners detected: " << corner_set.size() << endl;
-            // if (!corner_set.empty()) {
-            //cout << "First corner at: (" << corner_set[0].x << ", " << corner_set[0].y << ")" << endl;
-
-
-        // Task 2: Save calibration frames
-        char key = (char)waitKey(30);
-        if (key == 's' && found) {
-            corner_list.push_back(corner_set);
-
-            vector<Vec3f> point_set;
-            for (int i = 0; i < CHECKERBOARD[0]; i++) {
-                for (int j = 0; j < CHECKERBOARD[1]; j++) {
-                    point_set.push_back(Vec3f(j, -i, 0));
-                }
-            }
-            point_list.push_back(point_set);
-
-            drawChessboardCorners(frame, Size(CHECKERBOARD[1], CHECKERBOARD[0]), corner_set, found);
-
-            static int image_count = 0;
-            string filename = "calibration_frame_" + to_string(image_count++) + ".jpg";
-            imwrite(filename, frame);
-            cout << "Saved calibration frame: " << filename << endl;
-        }
-
-        if (key == 'c') {
-            calibrateCameraFromSavedData(corner_list, point_list, frame.size());
-        }
-
-        // --- Task 4: Pose Estimation (solvePnP) ---
         if (found) {
             Mat rvec, tvec;
             solvePnP(object_points, corner_set, camera_matrix, dist_coeffs, rvec, tvec);
 
-            cout << "Pose Estimation:" << endl;
-            cout << "Rotation Vector (rvec): " << rvec.t() << endl;
-            cout << "Translation Vector (tvec): " << tvec.t() << endl;
+            project3DPoints(frame, camera_matrix, dist_coeffs, rvec, tvec);
+            projectVirtualObject(frame, camera_matrix, dist_coeffs, rvec, tvec); // Task 6 Projection
+            imshow("3D Projection", frame);
         }
-        if (key == 27) { // ESC key
-            break;
-        }
+
+        if (waitKey(30) == 27) break;
     }
 
     cap.release();
