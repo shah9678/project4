@@ -1,5 +1,5 @@
 CMakeFiles/extension.dir/extension.cpp.o: \
-  /Users/aditshah/Desktop/PRCV/Project4/Extensions/extension.cpp \
+  /Users/aditshah/Desktop/PRCV/Project4/Extensions_task\ 7_samesprof./extension.cpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/opencv.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/opencv_modules.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/core.hpp \
