@@ -56,7 +56,6 @@ void detectHarrisCorners(Mat& frame) {
     }
 }
 
-// Task 8: Feature Detection using SURF
 void detectSURFFeatures(Mat& frame) {
     Mat gray;
     cvtColor(frame, gray, COLOR_BGR2GRAY);
