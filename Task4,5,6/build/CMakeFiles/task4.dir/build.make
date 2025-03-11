@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/aditshah/Desktop/PRCV/Project4/Task4
+CMAKE_SOURCE_DIR = /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/aditshah/Desktop/PRCV/Project4/Task4/build
+CMAKE_BINARY_DIR = /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/task4.dir/depend.make
@@ -72,28 +72,28 @@ include CMakeFiles/task4.dir/flags.make
 CMakeFiles/task4.dir/codegen:
 .PHONY : CMakeFiles/task4.dir/codegen
 
-CMakeFiles/task4.dir/task4.cpp.o: CMakeFiles/task4.dir/flags.make
-CMakeFiles/task4.dir/task4.cpp.o: /Users/aditshah/Desktop/PRCV/Project4/Task4/task4.cpp
-CMakeFiles/task4.dir/task4.cpp.o: CMakeFiles/task4.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aditshah/Desktop/PRCV/Project4/Task4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/task4.dir/task4.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task4.dir/task4.cpp.o -MF CMakeFiles/task4.dir/task4.cpp.o.d -o CMakeFiles/task4.dir/task4.cpp.o -c /Users/aditshah/Desktop/PRCV/Project4/Task4/task4.cpp
+CMakeFiles/task4.dir/task4,5,6.cpp.o: CMakeFiles/task4.dir/flags.make
+CMakeFiles/task4.dir/task4,5,6.cpp.o: /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/task4,5,6.cpp
+CMakeFiles/task4.dir/task4,5,6.cpp.o: CMakeFiles/task4.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/task4.dir/task4,5,6.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task4.dir/task4,5,6.cpp.o -MF CMakeFiles/task4.dir/task4,5,6.cpp.o.d -o CMakeFiles/task4.dir/task4,5,6.cpp.o -c /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/task4,5,6.cpp
 
-CMakeFiles/task4.dir/task4.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/task4.dir/task4.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/aditshah/Desktop/PRCV/Project4/Task4/task4.cpp > CMakeFiles/task4.dir/task4.cpp.i
+CMakeFiles/task4.dir/task4,5,6.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/task4.dir/task4,5,6.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/task4,5,6.cpp > CMakeFiles/task4.dir/task4,5,6.cpp.i
 
-CMakeFiles/task4.dir/task4.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/task4.dir/task4.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/aditshah/Desktop/PRCV/Project4/Task4/task4.cpp -o CMakeFiles/task4.dir/task4.cpp.s
+CMakeFiles/task4.dir/task4,5,6.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/task4.dir/task4,5,6.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/task4,5,6.cpp -o CMakeFiles/task4.dir/task4,5,6.cpp.s
 
 # Object files for target task4
 task4_OBJECTS = \
-"CMakeFiles/task4.dir/task4.cpp.o"
+"CMakeFiles/task4.dir/task4,5,6.cpp.o"
 
 # External object files for target task4
 task4_EXTERNAL_OBJECTS =
 
-task4: CMakeFiles/task4.dir/task4.cpp.o
+task4: CMakeFiles/task4.dir/task4,5,6.cpp.o
 task4: CMakeFiles/task4.dir/build.make
 task4: /opt/homebrew/lib/libopencv_gapi.4.11.0.dylib
 task4: /opt/homebrew/lib/libopencv_stitching.4.11.0.dylib
@@ -152,7 +152,7 @@ task4: /opt/homebrew/lib/libopencv_photo.4.11.0.dylib
 task4: /opt/homebrew/lib/libopencv_imgproc.4.11.0.dylib
 task4: /opt/homebrew/lib/libopencv_core.4.11.0.dylib
 task4: CMakeFiles/task4.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/aditshah/Desktop/PRCV/Project4/Task4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable task4"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable task4"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/task4.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -164,6 +164,6 @@ CMakeFiles/task4.dir/clean:
 .PHONY : CMakeFiles/task4.dir/clean
 
 CMakeFiles/task4.dir/depend:
-	cd /Users/aditshah/Desktop/PRCV/Project4/Task4/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/aditshah/Desktop/PRCV/Project4/Task4 /Users/aditshah/Desktop/PRCV/Project4/Task4 /Users/aditshah/Desktop/PRCV/Project4/Task4/build /Users/aditshah/Desktop/PRCV/Project4/Task4/build /Users/aditshah/Desktop/PRCV/Project4/Task4/build/CMakeFiles/task4.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6 /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6 /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build/CMakeFiles/task4.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/task4.dir/depend
 

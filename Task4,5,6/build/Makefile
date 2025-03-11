@@ -57,10 +57,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/aditshah/Desktop/PRCV/Project4/Task4
+CMAKE_SOURCE_DIR = /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/aditshah/Desktop/PRCV/Project4/Task4/build
+CMAKE_BINARY_DIR = /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aditshah/Desktop/PRCV/Project4/Task4/build/CMakeFiles /Users/aditshah/Desktop/PRCV/Project4/Task4/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build/CMakeFiles /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aditshah/Desktop/PRCV/Project4/Task4/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,29 +129,29 @@ task4/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/build
 .PHONY : task4/fast
 
-task4.o: task4.cpp.o
-.PHONY : task4.o
+task4,5,6.o: task4,5,6.cpp.o
+.PHONY : task4,5,6.o
 
 # target to build an object file
-task4.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/task4.cpp.o
-.PHONY : task4.cpp.o
+task4,5,6.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/task4,5,6.cpp.o
+.PHONY : task4,5,6.cpp.o
 
-task4.i: task4.cpp.i
-.PHONY : task4.i
+task4,5,6.i: task4,5,6.cpp.i
+.PHONY : task4,5,6.i
 
 # target to preprocess a source file
-task4.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/task4.cpp.i
-.PHONY : task4.cpp.i
+task4,5,6.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/task4,5,6.cpp.i
+.PHONY : task4,5,6.cpp.i
 
-task4.s: task4.cpp.s
-.PHONY : task4.s
+task4,5,6.s: task4,5,6.cpp.s
+.PHONY : task4,5,6.s
 
 # target to generate assembly for a file
-task4.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/task4.cpp.s
-.PHONY : task4.cpp.s
+task4,5,6.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/task4,5,6.cpp.s
+.PHONY : task4,5,6.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... task4"
-	@echo "... task4.o"
-	@echo "... task4.i"
-	@echo "... task4.s"
+	@echo "... task4,5,6.o"
+	@echo "... task4,5,6.i"
+	@echo "... task4,5,6.s"
 .PHONY : help
 
 

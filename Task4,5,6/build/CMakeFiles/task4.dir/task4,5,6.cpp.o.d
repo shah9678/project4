@@ -1,5 +1,5 @@
-CMakeFiles/task4.dir/task4.cpp.o: \
-  /Users/aditshah/Desktop/PRCV/Project4/Task4/task4.cpp \
+CMakeFiles/task4.dir/task4,5,6.cpp.o: \
+  /Users/aditshah/Desktop/PRCV/Project4/Task4,5,6/task4,5,6.cpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/opencv.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/opencv_modules.hpp \
   /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4/opencv2/core.hpp \

@@ -35,17 +35,35 @@ void calibrateCameraFromSavedData(
     cout << "Calibration complete and saved." << endl;
 }
 
-// Task 5: Project 3D Axes or Corners
+// Task 5: Project 3D Axes on All Four Corners
 void project3DPoints(Mat& frame, const Mat& camera_matrix, const Mat& dist_coeffs, const Mat& rvec, const Mat& tvec) {
+    // Define the 3D axes points (X, Y, Z axes)
     vector<Point3f> axes_points = {
         {0, 0, 0}, {3, 0, 0}, {0, 3, 0}, {0, 0, -3} // Origin, X, Y, Z axes
     };
-    vector<Point2f> projected_points;
-    projectPoints(axes_points, rvec, tvec, camera_matrix, dist_coeffs, projected_points);
 
-    line(frame, projected_points[0], projected_points[1], Scalar(0, 0, 255), 3); // X-axis (red)
-    line(frame, projected_points[0], projected_points[2], Scalar(0, 255, 0), 3); // Y-axis (green)
-    line(frame, projected_points[0], projected_points[3], Scalar(255, 0, 0), 3); // Z-axis (blue)
+    // Define the four corners of the chessboard in 3D space
+    vector<Point3f> corner_points = {
+        {0, 0, 0}, {9, 0, 0}, {9, -6, 0}, {0, -6, 0} // Four corners of the 7x10 chessboard
+    };
+
+    // Project and draw axes for each corner
+    for (const auto& corner : corner_points) {
+        // Translate the axes to the current corner
+        vector<Point3f> translated_axes;
+        for (const auto& axis : axes_points) {
+            translated_axes.push_back(corner + axis);
+        }
+
+        // Project the translated axes onto the image plane
+        vector<Point2f> projected_axes;
+        projectPoints(translated_axes, rvec, tvec, camera_matrix, dist_coeffs, projected_axes);
+
+        // Draw the 3D axes (X: red, Y: green, Z: blue)
+        line(frame, projected_axes[0], projected_axes[1], Scalar(0, 0, 255), 2); // X-axis (red)
+        line(frame, projected_axes[0], projected_axes[2], Scalar(0, 255, 0), 2); // Y-axis (green)
+        line(frame, projected_axes[0], projected_axes[3], Scalar(255, 0, 0), 2); // Z-axis (blue)
+    }
 }
 
 // Task 6: Construct and project a 3D virtual object
@@ -128,7 +146,7 @@ int main() {
             Mat rvec, tvec;
             solvePnP(object_points, corner_set, camera_matrix, dist_coeffs, rvec, tvec);
 
-            project3DPoints(frame, camera_matrix, dist_coeffs, rvec, tvec);
+            project3DPoints(frame, camera_matrix, dist_coeffs, rvec, tvec); // Draw 3D axes on all four corners
             projectVirtualObject(frame, camera_matrix, dist_coeffs, rvec, tvec); // Task 6 Projection
             imshow("3D Projection", frame);
         }
